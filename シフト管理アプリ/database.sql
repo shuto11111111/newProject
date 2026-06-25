@@ -37,16 +37,17 @@ CREATE TABLE user_skills(
 CREATE TABLE shifts (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
-    work_date DATE,
-    start_time TIME,
-    end_time TIME,
+    work_date DATE NOT NULL,
+    start_time TIME NOT NULL,
+    end_time TIME NOT NULL,
     assigned_by INT NOT NULL,
-    published BOOLEAN,
+    published BOOLEAN DEFAULT FALSE,
 
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 
-    FOREIGN KEY (user_id) REFERENCES users(id)
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (assigned_by) REFERENCES users(id)
 );
 
 
