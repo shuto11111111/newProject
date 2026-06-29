@@ -13,14 +13,14 @@ CREATE TABLE users (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
-CREATE TABLE skills(
+/*CREATE TABLE skills(
     id INT AUTO_INCREMENT PRIMARY KEY,
     skill_name VARCHAR(50)NOT NULL,
     description TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+);*/
 
-CREATE TABLE user_skills(
+/*CREATE TABLE user_skills(
     id INT AUTO_INCREMENT PRIMARY KEY,
 
     user_id INT NOT NULL,
@@ -32,7 +32,19 @@ CREATE TABLE user_skills(
 
     FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (skill_id) REFERENCES skills(id)
+);*/
+CREATE TABLE shift_requests(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    work_date DATE NOT NULL,
+    start_time TIME,
+    end_time TIME,
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (user_id) REFERENCES users(id)
 );
+
 
 CREATE TABLE shifts (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -52,11 +64,3 @@ CREATE TABLE shifts (
 
 
 
-CREATE TABLE shift_requirements(
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    work_date DATE,
-    start_time TIME,
-    end_time TIME,
-    required_count INT NOT NULL,
-    skill_count INT NOT NULL
-);
